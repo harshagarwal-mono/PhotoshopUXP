@@ -1,0 +1,7 @@
+{
+  "name": "monotype-photoshop-uxp-plugin",
+  "version": "1.0.1",
+  "description": "Monotype Fonts Plugin For Showing Missing Fonts",
+  "author": "Monotype",
+  "license": "Apache-2.0"
+}
