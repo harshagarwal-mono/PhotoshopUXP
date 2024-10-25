@@ -30,11 +30,20 @@
   #list li {
     margin: 8px 0px;
   }
+  #warning {
+    background-color: rgb(255, 102, 0);
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px 15px;
+    display: none;
+  }
  </style>
 <body>
   <sp-action-button id="trigger">Show Active Document Missing Fonts</sp-action-button>
   <sp-detail id="title"></sp-detail>
   <sp-detail id="output"></sp-detail>
   <ul id="list"></ul>
+  <sp-detail id="warning">There is No Active Document</sp-detail>
 </body>
 </html>

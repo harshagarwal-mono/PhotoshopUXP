@@ -1,7 +1,20 @@
 const { entrypoints } = require("uxp");
 const triggerButton = document.querySelector("#trigger");
 
+const clearData = () => {
+  const title = document.querySelector("#title");
+  const output = document.querySelector("#output");
+  const ul = document.querySelector("#list");
+  const warning = document.querySelector("#warning");
+
+  warning.style.display = "none";
+  title.textContent = "";
+  output.textContent = "";
+  ul.innerHTML = "";
+};
+
 const showMissingFontsInfo = (documentId, documentName, missingFonts) => {
+  clearData();
   const title = document.querySelector("#title");
   const output = document.querySelector("#output");
   const ul = document.querySelector("#list");
@@ -16,8 +29,20 @@ const showMissingFontsInfo = (documentId, documentName, missingFonts) => {
   });
 };
 
+const showWarningMessage = () => {
+  clearData();
+  const warning = document.querySelector("#warning");
+  warning.style.display = "block";
+}
+
 triggerButton.onclick = async () => {
-  const { id, name, psNames } = await checkForMissingFonts();
+  const { id, name, psNames, isActive = false } = await checkForMissingFonts();
+
+  if (!isActive) {
+    showWarningMessage();
+    return;
+  }
+
   showMissingFontsInfo(id, name, psNames);
 };
 
@@ -133,7 +158,9 @@ async function checkForMissingFonts() {
   const doc = app.activeDocument;
 
   if (!doc) {
-    return;
+    return {
+      isActive: false,
+    };
   }
   
   const textLayers = doc.layers.filter((layer) => layer.kind === "text");
@@ -149,6 +176,7 @@ async function checkForMissingFonts() {
     id: doc.id,
     name: doc.name,
     psNames: missingPsNames,
+    isActive: true,
   };
 }
 

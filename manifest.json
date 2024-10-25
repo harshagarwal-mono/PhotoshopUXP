@@ -15,8 +15,8 @@
       "type": "panel",
       "id": "missing-fonts",
       "minimumSize": {
-        "width": 250,
-        "height": 200
+        "width": 450,
+        "height": 350
       },
       "maximumSize": {
         "width": 2000,
